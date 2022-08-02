@@ -47,7 +47,8 @@ const columns = [
         sortable: false,
         filterable: false,
         flex: 2,
-        minWidth: 150
+        minWidth: 150,
+        renderCell: ({ value }) => value ? new Date(value).toLocaleString() : null
     },
     {
         field: 'createdAt',
@@ -55,7 +56,8 @@ const columns = [
         sortable: false,
         filterable: false,
         flex: 2,
-        minWidth: 150
+        minWidth: 150,
+        renderCell: ({ value }) => new Date(value).toLocaleString()
     },
     {
         field: 'nonLocked',
@@ -94,6 +96,8 @@ const Home = () => {
     const pageSize = Number(params.get('size')) || 10
 
     const { data, loading } = useSelector(state => state.users)
+
+    console.log(data.content[0])
 
     const [selectionModel, setSelectionModel] = useState([])
 
